@@ -4,7 +4,7 @@ Vamos a realizar un programa que simula la dirección de una empresa química. E
 
 ## Integrantes del equipo
 
-Carmen Mourelle Jarillo 54119, Pedro Muñoz Redondo 54121 y Marta Esparcia López 53936.
+Carmen Mourelle Jarillo carmenmoujarillo, Pedro Muñoz Redondo pedromunozredondo y Marta Esparcia López martaesparcialopez.
 
 ## Objetivos del trabajo
 
