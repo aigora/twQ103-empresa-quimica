@@ -53,7 +53,7 @@ do
 			}
 			fclose(fichero);
 			trabajadores=0;
-				
+				//
 			break;
 
 			case 2:
