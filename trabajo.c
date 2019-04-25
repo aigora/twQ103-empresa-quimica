@@ -5,21 +5,21 @@ struct trabajador {
 	int phone;
 	int dni;
 };
- typedef struct  
+ struct producto  
  {
  	int codigo;
  	int unidades;
-} producto;
+} ;
 int main()
 {
-	struct trabajador plantilla[100];
+	 struct trabajador plantilla[100];
 	int opcion,codigo,unidades, trabajadores=0,i;
 	int decision;
 	FILE *fichero;
-	producto A={1515,100}, B={9191,250}, C={3131,1250};
+	struct producto A={1515,100}, B={9191,250}, C={3131,1250};
 do
 {
-		printf("  MENU:\n \t1-contratar personal\n \t2-despedir personal\n \t3-vender productos\n \t4-comprar reactivos\n \t5-estado almacen\n seleccione la operacion deseada.\n");
+		printf("  MENU:\n \t1-contratar personal\n \t2-despedir personal\n \t3-vender productos\n \t4-comprar reactivos\n \t5-estado almacen\n\t6-Mostrar lista de trabajadores\n\t7-salir del programa\n seleccione la operacion deseada.\n");
 		scanf("%d",&opcion);
 		fflush(stdin);
 		switch (opcion)
@@ -39,7 +39,7 @@ do
 			scanf("%s", plantilla[trabajadores].apellido);
 			printf("Telefono: \n");
 			scanf("%d", &plantilla[trabajadores].phone);
-			printf("DNI: \n");
+			printf("DNI (sin letra): \n");
 			scanf("%d", &plantilla[trabajadores].dni);
 			trabajadores++;
 			//grabar los datos en el fichero
@@ -53,11 +53,20 @@ do
 			}
 			fclose(fichero);
 			trabajadores=0;
-				//
+				
 			break;
 
 			case 2:
 				// sentencias para despedir personal
+					fichero = fopen("plantilla.txt", "r");
+					while (fscanf(fichero,  "%s %s %d %d", plantilla[trabajadores].nombre,plantilla[trabajadores].apellido, &plantilla[trabajadores].phone, &plantilla[trabajadores].dni) != EOF){
+					trabajadores++;
+					}
+			fclose(fichero);
+			if (trabajadores == 0){
+				printf("no tienes trabajadores, contratalos\n");
+	
+			}
 			break;
 			case 3:
 				// sentencias para vender productos
@@ -110,13 +119,33 @@ do
 							printf("el codigo no es correcto\n");
 			break;
 			case 5:
-				printf("compuesto\t codigo\t unidades:\n");
+				printf("-------------------------------------\n");	
+				printf("%-10s\t %-5s\t %-10s\n","Compuesto", "codigo", "unidades");
+				printf("-------------------------------------\n");
 				printf("acido sulfurico\t %d\t %d \n",A.codigo,A.unidades);
 				printf("acido nitrico\t %d\t %d \n",B.codigo,B.unidades);
 				printf("etanol\t\t %d\t %d \n",C.codigo,C.unidades);
+				printf("-------------------------------------\n");
 			break;
+			case 6:
+				fichero = fopen("plantilla.txt", "r");
+					while (fscanf(fichero,  "%s %s %d %d", plantilla[trabajadores].nombre,plantilla[trabajadores].apellido, &plantilla[trabajadores].phone, &plantilla[trabajadores].dni) != EOF){
+					trabajadores++;
+					}
+			fclose(fichero);
+				printf("-----------------------------------------------------------\n");	
+				printf("%-10s\t %-10s\t %-10s\t %-10s\n","nombre", "apellido", "telefono", "DNI");
+				printf("-----------------------------------------------------------\n");
+				for (i=0; i<trabajadores; i++) {
+				printf("%-10s\t", plantilla[i].nombre);
+				printf("%-10s\t",plantilla[i].apellido);		
+				printf("%d\t",plantilla[i].phone);
+				printf("%d\n",plantilla[i].dni);	
 			}
-	}while (opcion != 6);
+				printf("-----------------------------------------------------------\n");
+			trabajadores=0;
+			}
+	}while (opcion != 7);
 
 	return 0;
 
