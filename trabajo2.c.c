@@ -21,18 +21,18 @@ int main()
 {
 	//iniciamos el vector de estructura llamado plantilla
 	 struct trabajador plantilla[100];
-	int opcion,codigo,unidades, trabajadores=0,i;
+	int codigo,unidades, trabajadores=0,i,aux;
 	int decision;
+	int opcion1;
 	char despedido[40];
 	FILE *fichero;
 	struct producto A={1515,100}, B={9191,250}, C={3131,1250};
 		do
-	{		
-		menu();
-		printf("elije una opcion: \n");
-		fflush(stdin);
-		scanf("%d",&opcion);
-		switch (opcion)
+	{	
+
+	opcion1=menu();
+		
+		switch (opcion1)
 		{
 			case 1:
 				//abrimos y leemos el fichero plantilla y cuenta el numero de trabajadores
@@ -41,8 +41,6 @@ int main()
 						trabajadores++;
 						}
 				fclose(fichero);
-				// sentencias para contratar personal
-				// nombre, apellidos, dni, telefono
 				printf("Nombre: \n");
 				scanf("%s", plantilla[trabajadores].nombre);
 				printf("Apellido: \n");
@@ -77,15 +75,7 @@ int main()
 						if (trabajadores == 0){
 							printf("no tienes trabajadores, contratalos\n");
 						}
-		/*	printf("introduzca el nombre del que deseas despedir: \n");
-			scanf("%s",despedido);
-			for(i=0;i<trabajadores;i++){
-				if(despedido==plantilla[i].nombre){
-					return 0;
-				}
-				else
-				return 1;
-			}*/
+	
 					break;
 			case 3:
 				// sentencias para vender productos
@@ -163,17 +153,20 @@ int main()
 				printf("-----------------------------------------------------------\n");
 			trabajadores=0;
 			}
-	}while (opcion != 7);
+	}while (opcion1 != 7);
 
 	return 0;
 
 }
 
 int menu(){
+		int opcion;
 		printf("...............MENU DE OPCIONES.................\n");
 		printf("\t1-contratar personal\n \t2-despedir personal\n \t3-vender productos\n \t4-comprar reactivos\n \t5-estado almacen\n\t6-Mostrar lista de trabajadores\n\t7-salir del programa\n");
-		
-		return 0;
-}
+	printf("Introduce una de estas opciones\n");
 
+	scanf("%d", &opcion);
+	
+	return opcion;
+}
 
